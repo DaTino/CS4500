@@ -5,4 +5,6 @@
 # 8/22/2019
 
 name = input('What is your name?\n');
-print("Hello", name);
+print("Hello", name, ". Press ENTER to finish the program.");
+#input is used to simply exit the program on enter keypress.
+input();
