@@ -1,0 +1,7 @@
+Batter Simulation Results
+*************************
+Seed:                       Batting Average:            At Bats:                    
+62                          0.500                       500
+Simulated Hits:             Simulated Batting Average:  Longest Hit Streak:
+250                         0.500                       14
+*************************
