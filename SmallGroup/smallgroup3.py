@@ -69,11 +69,13 @@ for j in range(NumSims):
     avgList.append(hits/(AtBats));
     streakList.append(longestHitStreak);
 
+#we initialize career totals for our batter.
 totalHits = 0;
 totalAvg  = 0.000;
 minMax    = 0;
 avgMax    = 0;
 
+#calculate total number of hits and career batting avg.
 for i in hitList:
     totalHits = totalHits + i;
 
