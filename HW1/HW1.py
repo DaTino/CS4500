@@ -19,8 +19,11 @@ infile = open("HW1infile.txt", "r");
 #k is the number of arrows between circles
 #kList is a list containing the arrow specifications.
 specs = infile.readlines();
+<<<<<<< HEAD
 infile.close();
 
+=======
+>>>>>>> dbc641563b6f863ef941d532fce00c3ca9ddcaf6
 n     = int(specs[0]);
 k     = int(specs[1]);
 kList = [];
@@ -31,6 +34,7 @@ for i in specs[2:]:
     i = i.replace("\n", "");
     temp = i.split(" ");
     kList.append((int(temp[0]), int(temp[1])));
+<<<<<<< HEAD
 
 
 
@@ -38,3 +42,27 @@ print(f"Circles: {n}, Arrows: {k}, kList[0]: {kList[0]}");
 
 for i in kList:
    print(i);
+=======
+    print(temp);
+
+
+    # temp = i;
+    # arrowSource = [];
+    # jDex = 0;
+    # for j in temp:
+    #     if (j.isspace()) == False:
+    #         arrowSource.append(j)
+    #     else:
+    #         jDex = j
+    #         break;
+    # temp = "".join(temp[jDex:].split());
+    # kList.append((arrowSource, temp));
+
+
+print(kList[0]);
+
+print(f"Circles: {n}, Arrows: {k}, kList[0]: {kList[0]}");
+
+#for i in kList:
+#    print(i);
+>>>>>>> dbc641563b6f863ef941d532fce00c3ca9ddcaf6
