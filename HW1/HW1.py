@@ -1,4 +1,5 @@
 # HW1 by Alberto Maiocco
+# CS4500 9/4/2019
 # This program plays a game on a strongly directed graph (diagraph).
 # Using a file that specifies a diagraph, this
 # program will determine the following:
@@ -10,8 +11,14 @@
 # We assume the input file describes a diagraph, but we will check
 # that it is correctly formatted.
 
-#Open the input file in read mode
-infile = open("HW1infile.txt", "r");
+#import sys to exit from exceptions
+import sys;
+
+#Open the input file in read mode. Exit if file doesn't exist.
+try:
+    infile = open("HW1infile.txt", "r");
+except:
+    sys.exit("Could not open file. Does it exist? Exiting.");
 
 #Read lines from infile and initialize relevant variables.
 #specs is a list containing the lines of the infile.
@@ -21,6 +28,14 @@ infile = open("HW1infile.txt", "r");
 specs = infile.readlines();
 infile.close();
 
+#Check that file has correct format.
+if int(specs[0]) < 2 or int(specs[0]) > 10:
+    sys.exit("Incorrect number of vertices in file. Must be between 2 and 10 inclusive. Exiting.");
+if len(specs[2:]) != int(specs[1]):
+    sys.exit("Number of arrows does not match number of arrow specifications. Exiting.");
+
+#Set n as nodes in game graph and k as arrows in game. kList holds the
+#arrow specifications.
 n     = int(specs[0]);
 k     = int(specs[1]);
 kList = [];
@@ -64,12 +79,10 @@ def depthFirstIterative(graph, start):
             stack.append(neighbor);
     return nVisited;
 
+#returned list of number of times each node visited.
 gameVals = depthFirstIterative(graph, 1);
-# 1. The number of circles used in the game.
-# 2. The number of arrows used in the game.
-# 3. The total number of checks on all the circles combined.
-# 4. The average number of checks in a circle marked during the game.
-# 5. The maximum number of checks in any one circle.
+
+#using the list of node visits to find our game data
 totalChecks = 0;
 for i in gameVals:
     totalChecks += i;
@@ -93,7 +106,7 @@ for row in outputData:
 print(f"*************************");
 
 #outputting to file
-outfile = open("InClass3outfile.txt", "w");
+outfile = open("HW1MaioccoOutfile.txt", "w");
 outfile.write(f"Game Results\n");
 outfile.write(f"*************************\n");
 for row in outputData:
