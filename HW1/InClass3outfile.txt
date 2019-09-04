@@ -1,0 +1,8 @@
+Game Results
+*************************
+1. Number of Circles:    4                        
+2. Number of Arrows:     6                        
+3. Total # of Checks:    7                        
+4. Average # of Checks:  1.75                     
+5. Maximum # of Checks:  2                        
+*************************
