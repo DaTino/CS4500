@@ -13,6 +13,7 @@
 
 #import sys to exit from exceptions
 import sys;
+import random;
 
 #Open the input file in read mode. Exit if file doesn't exist.
 try:
@@ -126,22 +127,75 @@ for i in reverseVals:
 
 #Running the simulation. By now we know we have a strongly connected graph,
 #so we can randomly choose any node to start on. We'll run through it 10x.
+random.seed();
 
+allGameVals = [];
+
+for i in range(10):
+    gameVals = depthFirstIterative(graph, random.randint(1, n))
+    allGameVals.append(gameVals);
+
+print(allGameVals);
+# Avg number of total checks per game
+totalChecksPGList  = [];
+allTotalChecks = 0;
+for i in allGameVals:
+    totalChecksPerGame = 0;
+    for j in i:
+        totalChecksPerGame += j;
+    totalChecksPGList.append(totalChecksPerGame)
+for i in totalChecksPGList:
+    allTotalChecks += i;
+avgTotalChecksPerGame = allTotalChecks/10;
+# max number of total checks in single game
+maxChecks = max(totalChecksPGList);
+# min number of total checks in single game
+minChecks = min(totalChecksPGList);
+# avg number of checks on single circle over all games
+circleChecksList = [];
+for i in range(n):
+    circleChecksList.append(0);
+
+totalMin = 1000000;
+totalMax = -1;
+for i in allGameVals:
+    incrementer = 0;
+    minCircleChecks = min(i);
+    maxCircleChecks = max(i);
+    if minCircleChecks < totalMin:
+        totalMin = minCircleChecks;
+    if maxCircleChecks > totalMax:
+        totalMax = maxCircleChecks;
+    for j in i:
+        circleChecksList[incrementer] += j;
+        incrementer += 1;
+avgCircleChecks = [];
+for i in circleChecksList:
+    avgCircleChecks = i/10;
+avgCircleChecks = allTotalChecks/(10 * n);
+# # min number of single circle checks
+# minCircleChecks = min(circleChecksList);
+# # max number of single circle checks
+# maxCircleChecks = max(circleChecksList);
 
 #using the list of node visits to find our game data
-totalChecks = 0;
-for i in gameVals:
-    totalChecks += i;
-avgChecks = totalChecks/n;
-maxChecks = max(gameVals);
+# totalChecks = 0;
+# for i in gameVals:
+#     totalChecks += i;
+# avgChecks = totalChecks/n;
+# maxChecks = max(gameVals);
 
 #Setting the output data. We use append() purely for code readability.
 #This is all output formatting.
 outputData = [["1. Number of Circles:", f"{n}"]];
 outputData.append(["2. Number of Arrows:", f"{k}"]);
-outputData.append(["3. Total # of Checks:", f"{totalChecks}"]);
-outputData.append(["4. Average # of Checks:", f"{avgChecks}"]);
-outputData.append(["5. Maximum # of Checks:", f"{maxChecks}"]);
+outputData.append(["3. Average # of total checks per game:", f"{avgTotalChecksPerGame}"]);
+outputData.append(["4. Max # of total checks in single game:", f"{maxChecks}"]);
+outputData.append(["5. Min # of total checks in single game:", f"{minChecks}"]);
+outputData.append(["6. Average # of checks on single circle:", f"{avgCircleChecks}"]);
+outputData.append(["7. Min # of total checks on single circle:", f"{totalMin}"]);
+outputData.append(["8. Max # of total checks on single game:", f"{totalMax}"]);
+
 col_width = max(len(word) for row in outputData for word in row) + 2;  # padding
 
 #More screen output formatting.
@@ -152,7 +206,7 @@ for row in outputData:
 print(f"*************************");
 
 #outputting to file
-outfile = open("HW1MaioccoOutfile.txt", "w");
+outfile = open("HW2MaioccoOutfile.txt", "w");
 outfile.write(f"Game Results\n");
 outfile.write(f"*************************\n");
 for row in outputData:

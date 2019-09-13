@@ -1,0 +1,11 @@
+Game Results
+*************************
+1. Number of Circles:                       4                                           
+2. Number of Arrows:                        5                                           
+3. Average # of total checks per game:      6.0                                         
+4. Max # of total checks in single game:    6                                           
+5. Min # of total checks in single game:    6                                           
+6. Average # of checks on single circle:    1.5                                         
+7. Min # of total checks on single circle:  1                                           
+8. Max # of total checks on single game:    3                                           
+*************************
